@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+:root {
+  --color-primary: #FF6B35;
+  --color-primary-light: #FFA500;
+  --color-primary-dark: #E85D04;
+}
 
 * {
   margin: 0;
@@ -13,12 +17,28 @@ body {
   background: #f8f9fa;
 }
 
-/* Gradiente naranja personalizado */
+/* ============= GRADIENTES ============= */
 .hero-gradient {
-  background: linear-gradient(135deg, #FF6B35 0%, #FFA500 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
 }
 
-/* Animaciones */
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-animated {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light), #E85D04);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-animation 3s ease infinite;
+}
+
+/* ============= ANIMACIONES ============= */
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -30,16 +50,391 @@ body {
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes gradient-animation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in-up 1s ease-out;
 }
 
-/* Hover effects para categorías */
-.category-card {
+/* ============= FONDO ANIMADO ============= */
+.bg-blobs::before,
+.bg-blobs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: blob 7s infinite;
+}
+
+.bg-blobs::before {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 107, 53, 0.15);
+  top: 80px;
+  left: 40px;
+}
+
+.bg-blobs::after {
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 165, 0, 0.15);
+  top: 160px;
+  right: 40px;
+  animation-delay: 2s;
+}
+
+/* ============= LOGO ============= */
+.logo-icon {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(255, 107, 53, 0.3);
   transition: all 0.3s ease;
 }
 
+.logo-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(255, 107, 53, 0.4);
+}
+
+/* ============= NAVEGACIÓN ============= */
+.nav-link {
+  color: #374151;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+/* ============= BOTONES ============= */
+.btn-primary {
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 6px rgba(255, 107, 53, 0.2);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(255, 107, 53, 0.3);
+}
+
+.btn-secondary {
+  padding: 0.625rem 1.25rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  border: 2px solid var(--color-primary);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 107, 53, 0.05);
+  transform: scale(1.05);
+}
+
+.btn-hero-primary {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-hero-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+}
+
+.btn-hero-secondary {
+  padding: 1rem 2rem;
+  background: white;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 107, 53, 0.05);
+  transform: scale(1.05);
+}
+
+.btn-cta {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+}
+
+/* ============= BADGE ============= */
+.badge-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 107, 53, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+/* ============= TARJETAS FLOTANTES ============= */
+.float-card {
+  position: absolute;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+.float-card:hover {
+  transform: translateY(-10px) !important;
+}
+
+.card-1 {
+  top: 0;
+  right: 0;
+  transform: rotate(6deg);
+}
+
+.card-1:hover {
+  transform: rotate(3deg) translateY(-10px);
+}
+
+.card-2 {
+  bottom: 40px;
+  left: 0;
+  transform: rotate(-6deg);
+  animation-delay: 2s;
+}
+
+.card-2:hover {
+  transform: rotate(-3deg) translateY(-10px);
+}
+
+.card-3 {
+  top: 33%;
+  right: 40px;
+  animation-delay: 4s;
+}
+
+.card-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============= CÍRCULO HERO ============= */
+.hero-circle {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(255, 107, 53, 0.4);
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* ============= CATEGORÍAS ============= */
+.category-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
 .category-card:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+  border-color: var(--color-primary);
+}
+
+.category-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+
+.category-icon svg {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+/* ============= PASOS (CÓMO FUNCIONA) ============= */
+.step-card {
+  position: relative;
+}
+
+.step-number {
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  width: 4rem;
+  height: 4rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 6px rgba(255, 107, 53, 0.3);
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-number {
+  transform: scale(1.1);
+}
+
+.step-content {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, white 100%);
+  padding: 2rem;
+  padding-top: 3rem;
+  border-radius: 1.5rem;
+  border: 2px solid rgba(255, 107, 53, 0.2);
+  transition: all 0.3s ease;
+}
+
+.step-card:hover .step-content {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+}
+
+.step-icon {
+  width: 5rem;
+  height: 5rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-icon {
+  transform: scale(1.1);
+}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 768px) {
+  .hero-circle {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .float-card {
+    display: none;
+  }
+  
+  .step-number {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
 }
