@@ -34,7 +34,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-primary to-primary-light py-20">
+    <section class="hero-gradient py-20">
       <div class="container mx-auto px-4 text-center">
         <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
           Intercambia, Dona o Vende
